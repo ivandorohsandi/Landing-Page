@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baso Aci Aja</title>
+  <style>
+  /* === Utilities & Theme === */
+  :root{
+    --red:#c62828;
+    --red-dark:#a61d1d;
+    --cream:#fff7f5;
+    --text:#222;
+    --muted:#666;
+    --radius:16px;
+    --shadow:0 8px 24px rgba(0,0,0,.08);
+  }
+  body{margin:0;font-family:"Segoe UI",Arial,sans-serif;color:var(--text);line-height:1.6;background:#fff}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
+  .section{padding:64px 20px;}
+  .wrap{max-width:1100px;margin:auto;}
+  .h2{font-size:32px;margin:0 0 8px;font-weight:800}
+  .sub{color:var(--muted);margin-bottom:28px}
+  .btn{display:inline-block;background:var(--red);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700}
+  .btn:hover{background:var(--red-dark)}
+
+  /* === Header === */
+  header{position:sticky;top:0;z-index:50;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+  .nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
+  .logo{font-weight:800;color:var(--red);font-size:20px}
+  nav a{margin-left:20px;color:var(--text);font-weight:600}
+  nav a:hover{color:var(--red)}
+
+  /* === Hero === */
+  .hero{background:var(--cream);padding:80px 20px;text-align:center}
+  .hero h1{font-size:40px;margin-bottom:20px}
+  .hero p{max-width:600px;margin:auto;color:var(--muted);margin-bottom:28px}
+  .hero img{max-width:400px;margin:30px auto;border-radius:var(--radius);box-shadow:var(--shadow)}
+
+  /* === Produk === */
+  .produk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .produk-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .produk-card img{aspect-ratio:16/10;object-fit:cover}
+  .produk-card .body{padding:18px;flex:1;display:flex;flex-direction:column}
+  .produk-card h3{margin:0 0 8px}
+  .harga{font-weight:800;margin-bottom:12px}
+  .produk-card .btn{margin-top:auto;text-align:center}
+
+  /* === Promo Paket === */
+  .promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .promo-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .promo-img{aspect-ratio:16/10;object-fit:cover;width:100%}
+  .promo-body{padding:18px}
+  .badge{background:var(--cream);color:var(--red);font-weight:700;padding:6px 10px;border-radius:999px;font-size:12px;display:inline-block;margin-bottom:10px}
+  .price{font-size:20px;font-weight:800;margin:6px 0 12px}
+  .list{margin:0 0 16px;padding:0;list-style:none;color:var(--muted)}
+  .list li{margin:6px 0;display:flex;gap:8px}
+  .list li:before{content:"✓";color:var(--red);font-weight:900}
+
+  /* === Testimoni === */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .testi{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:flex;flex-direction:column;gap:12px}
+  .stars{letter-spacing:2px;color:#ffb300;font-size:18px}
+  .person{display:flex;align-items:center;gap:12px}
+  .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover}
+  .name{font-weight:700}
+  .role{color:var(--muted);font-size:12px}
+
+  /* === FAQ === */
+  .faq{max-width:900px;margin:auto}
+  .faq-item{border-radius:12px;background:#fff;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+  .faq-q{width:100%;text-align:left;padding:18px 20px;font-weight:700;background:#fff;border:0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 20px;color:var(--muted)}
+  .faq-item.open .faq-a{max-height:300px;padding:0 20px 18px}
+  .chev{transition:transform .2s}
+  .faq-item.open .chev{transform:rotate(180deg)}
+
+  /* === Footer === */
+  footer{background:var(--red);color:#fff;padding:40px 20px;text-align:center}
+  footer p{margin:6px 0}
+
+  /* === Section backgrounds === */
+  .bg-cream{background:var(--cream)}
+  .bg-red{background:var(--red);color:#fff}
+  .bg-red .h2,.bg-red .sub{color:#fff}
+  .bg-red .sub{opacity:.9}
+
+  /* === Responsive === */
+  @media (max-width:900px){
+    .produk-grid,.promo-grid,.testi-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:620px){
+    .produk-grid,.promo-grid,.testi-grid{grid-template-columns:1fr}
+    .hero h1{font-size:28px}
+    .h2{font-size:26px}
+  }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="nav">
+    <div class="logo">🍜 Baso Aci Aja</div>
+    <nav>
+      <a href="#produk">Produk</a>
+      <a href="#promo">Promo</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Baso Aci Khas Sunda – Pedas Nagih!</h1>
+  <p>Nikmati sensasi pedas gurih baso aci homemade yang praktis, tahan lama, dan cocok buat semua suasana.</p>
+  <a class="btn" href="https://wa.me/62812345678?text=Halo%20saya%20mau%20pesan%20Baso%20Aci">Beli Sekarang</a>
+  <img src="https://images.unsplash.com/photo-1617196037559-0f4f39b69ed2?q=80&w=1200" alt="Baso Aci">
+</section>
+
+<!-- Produk -->
+<section id="produk" class="section">
+  <div class="wrap">
+    <h2 class="h2">Produk Kami</h2>
+    <p class="sub">Pilih varian favoritmu</p>
+    <div class="produk-grid">
+      <article class="produk-card">
+        <img src="https://images.unsplash.com/photo-1604908177010-9899e9b347d1?q=80&w=1200" alt="Pedas Mercon">
+        <div class="body">
+          <h3>Pedas Mercon</h3>
+          <div class="harga">Rp 25.000</div>
+          <a class="btn" href="#">Beli</a>
+        </div>
+      </article>
+      <article class="produk-card">
+        <img src="https://images.unsplash.com/photo-1621996346563-17c3768dd1d2?q=80&w=1200" alt="Original">
+        <div class="body">
+          <h3>Original</h3>
+          <div class="harga">Rp 23.000</div>
+          <a class="btn" href="#">Beli</a>
+        </div>
+      </article>
+      <article class="produk-card">
+        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200" alt="Seblak">
+        <div class="body">
+          <h3>Seblak</h3>
+          <div class="harga">Rp 27.000</div>
+          <a class="btn" href="#">Beli</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Promo Paket -->
+<section id="promo" class="section bg-cream">
+  <div class="wrap">
+    <h2 class="h2">Promo Paket Hemat</h2>
+    <p class="sub">Lebih irit buat stok di rumah—langsung checkout via WhatsApp.</p>
+
+    <div class="promo-grid">
+      <article class="promo-card">
+        <img class="promo-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200" alt="Paket 3 Varian">
+        <div class="promo-body">
+          <span class="badge">Best Seller</span>
+          <h3>Paket Trio Varian</h3>
+          <div class="price">Rp 70.000 <del style="color:#999;font-size:14px;font-weight:600">Rp 75.000</del></div>
+          <ul class="list">
+            <li>1x Pedas Mercon</li>
+            <li>1x Original</li>
+            <li>1x Seblak</li>
+          </ul>
+          <a class="btn" href="https://wa.me/62812345678">Beli via WA</a>
+        </div>
+      </article>
+
+      <article class="promo-card">
+        <img class="promo-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200" alt="Paket Pedas Mercon">
+        <div class="promo-body">
+          <span class="badge">Limited</span>
+          <h3>Paket Pedas Mercon (3 pcs)</h3>
+          <div class="price">Rp 72.000</div>
+          <ul class="list">
+            <li>3x Pedas Mercon</li>
+            <li>Bonus cabe kering</li>
+          </ul>
+          <a class="btn" href="https://wa.me/62812345678">Beli via WA</a>
+        </div>
+      </article>
+
+      <article class="promo-card">
+        <img class="promo-img" src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=1200" alt="Paket Keluarga">
+        <div class="promo-body">
+          <span class="badge">Hemat</span>
+          <h3>Paket Keluarga (6 pcs)</h3>
+          <div class="price">Rp 135.000</div>
+          <ul class="list">
+            <li>Bebas mix varian</li>
+            <li>Gratis stiker & kartu ucapan</li>
+          </ul>
+          <a class="btn" href="https://wa.me/62812345678">Beli via WA</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Testimoni -->
+<section id="testimoni" class="section">
+  <div class="wrap">
+    <h2 class="h2">Apa Kata Mereka</h2>
+    <p class="sub">Pembeli beneran, komentar apa adanya.</p>
+
+    <div class="testi-grid">
+      <article class="testi">
+        <div class="stars">★★★★★</div>
+        <p>“Teksturnya kenyal pas, kuah pedasnya nagih. Anak kos wajib stok!”</p>
+        <div class="person">
+          <img class="avatar" src="https://i.pravatar.cc/100?img=12" alt="avatar">
+          <div>
+            <div class="name">Rina A.</div>
+            <div class="role">Mahasiswi – Bandung</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi">
+        <div class="stars">★★★★★</div>
+        <p>“Varian seblaknya juara! Aromanya bikin semangat, porsinya pas.”</p>
+        <div class="person">
+          <img class="avatar" src="https://i.pravatar.cc/100?img=7" alt="avatar">
+          <div>
+            <div class="name">Yusuf P.</div>
+            <div class="role">Karyawan – Jakarta</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="testi">
+        <div class="stars">★★★★☆</div>
+        <p>“Originalnya ringan dan gurih. Cocok buat yang nggak kuat pedas.”</p>
+        <div class="person">
+          <img class="avatar" src="https://i.pravatar.cc/100?img=30" alt="avatar">
+          <div>
+            <div class="name">Salsa M.</div>
+            <div class="role">Ibu Rumah Tangga – Depok</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section bg-red">
+  <div class="wrap">
+    <h2 class="h2">FAQ – Pertanyaan Umum</h2>
+    <p class="sub">Informasi singkat biar kamu makin yakin.</p>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Berapa lama masa simpan?<span class="chev">▾</span></button>
+        <div class="faq-a">
+          <p>Dalam kondisi belum dibuka, tahan hingga 6–9 bulan (suhu ruang kering). Setelah dibuka/diracik, sebaiknya langsung habis.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Cara penyajian seperti apa?<span class="chev">▾</span></button>
+        <div class="faq-a">
+          <p>Rebus 400–500 ml air hingga mendidih, masukkan bumbu + topping, lalu baso aci 3–4 menit. Sajikan hangat dengan jeruk limo & daun bawang.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Apakah ada varian tidak pedas?<span class="chev">▾</span></button>
+        <div class="faq-a">
+          <p>Ada, varian <b>Original</b> kuah bening. Level pedas bisa diatur dari bumbu cabe terpisah.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Pengiriman ke luar kota bisa?<span class="chev">▾</span></button>
+        <div class="faq-a">
+          <p>Bisa. Kami kirim via kurir reguler/instan (kota tertentu). Produk aman karena kemasan kedap & tahan lama.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>🍜 Baso Aci Aja – 2025</p>
+  <p>Follow kami di IG @basoaciaja | WA: 0812-3456-7890</p>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item = btn.closest('.faq-item');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+</script>
+
+</body>
+</html>
